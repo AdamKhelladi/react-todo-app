@@ -1,3 +1,16 @@
+body {
+  background-color: #0B1215;
+}
+
+ /* * Main Color: #0B1215
+ * Secondary Color: #0e76ddff
+ * ---
+ * Midnight Blue: #101720
+ * Oil Black: #0C0C0C
+ * Rich Black: #020D19
+ * Deep Navy Blue: #011222
+ * Charcoal Gray: #171717 */
+
 .App {
   text-align: center;
 }
