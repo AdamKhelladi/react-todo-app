@@ -42,7 +42,7 @@ h2 {
   cursor: pointer;
   transition: .3s;
 }
-.person-icon:hover,
+.personIcon:hover,
 .login:hover {
   background-color: #0b5fc2;
 }
