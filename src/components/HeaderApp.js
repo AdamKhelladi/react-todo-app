@@ -7,7 +7,7 @@ export default function HeaderApp() {
       <h2>TO DO LIST</h2>
       <div className="infos">
         <button className="login">Login</button>
-        <PersonIcon className="person-icon" />
+        <PersonIcon className="personIcon" />
       </div>
     </div>
   );

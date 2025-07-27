@@ -10,6 +10,7 @@ h2 {
   margin: 0;
   letter-spacing: -2px;
   font-size: 30px;
+  user-select: none;
 }
 
 .infos {
@@ -32,7 +33,7 @@ h2 {
   transition: .3s;
 }
 
-.person-icon {
+.personIcon {
   font-size: 35px;
   border-radius: 50%;
   background-color: #0e76ddff;
