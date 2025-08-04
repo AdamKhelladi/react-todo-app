@@ -17,6 +17,7 @@ export default function ToggleButtons() {
       exclusive
       onChange={handleChange}
       aria-label="Platform"
+      className="btnsGroup"
     >
       <ToggleButton sx={ToggleButtonStyle} value="all">
         All

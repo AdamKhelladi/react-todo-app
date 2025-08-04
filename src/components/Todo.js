@@ -16,6 +16,8 @@ export default function Todo() {
         bgcolor: "#111e2d",
         maxWidth: 770,
         mx: "auto",
+        margin: 0,
+        marginBottom: 1
       }}
     >
       <CardContent style={{padding: "10px"}}>
