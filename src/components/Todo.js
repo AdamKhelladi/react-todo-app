@@ -18,9 +18,10 @@ export default function Todo() {
           borderRadius: "10px",
           backgroundColor: "#111e2d",
           height: 70,
-          width: 770,
+          width: 770, 
           margin: "0 auto",
         }}
+        style={{maxWidth: "100%"}}
       >
         <CardContent sx={{ width: 770 }}>
           <Grid
@@ -78,6 +79,3 @@ const IconStyle = {
   width: "40px",
   height: "40px",
 };
-
-
-
