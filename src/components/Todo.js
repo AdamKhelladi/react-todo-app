@@ -16,8 +16,6 @@ export default function Todo() {
         bgcolor: "#111e2d",
         maxWidth: 770,
         mx: "auto",
-        transition: ".3s",
-        "&:hover": {boxShadow: "0 0 5px #0b60c280"}
       }}
     >
       <CardContent style={{padding: "10px"}}>
