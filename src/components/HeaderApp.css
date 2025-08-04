@@ -11,6 +11,9 @@ h2 {
   letter-spacing: -2px;
   font-size: 30px;
   user-select: none;
+  font-family: main-font;
+  font-weight: 800;
+
 }
 
 .infos {

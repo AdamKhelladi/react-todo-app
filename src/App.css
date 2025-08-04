@@ -11,6 +11,7 @@
 
 body {
   background-color: #0B1215;
+  font-family: main-font;
 }
 
 .App {
@@ -23,5 +24,24 @@ body {
 
 @font-face {
   font-family: main-font;
-  src: url("/public/fonts/LibertinusSans-Bold.ttf");
+  src: url("../public/fonts/Roboto-Bold.ttf");
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: main-font;
+  src: url("../public/fonts/Roboto-Medium.ttf");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: main-font;
+  src: url("../public/fonts/Roboto-Light.ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: main-font;
+  src: url("../public/fonts/Roboto-Thin.ttf");
+  font-weight: 100;
 }

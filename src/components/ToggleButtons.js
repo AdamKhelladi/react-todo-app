@@ -34,4 +34,5 @@ export default function ToggleButtons() {
 const ToggleButtonStyle = {
   color: "#ccc",
   border: "none",
+  fontWeight: 600,
 };
