@@ -1,81 +1,49 @@
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
-import Grid from "@mui/material/GridLegacy";
+import { Card, CardContent, Typography, Grid, IconButton } from "@mui/material";
+import { Check, Delete, Edit } from "@mui/icons-material";
 
-// Icons
-import IconButton from "@mui/material/IconButton";
-import CheckIcon from "@mui/icons-material/Check";
-import DeleteIcon from "@mui/icons-material/Delete";
-import EditIcon from "@mui/icons-material/Edit";
+const IconStyle = {
+  color: "#ccc",
+  transition: ".3s",
+  "&:hover": { color: "#fff" },
+};
 
 export default function Todo() {
   return (
-    <div style={{ marginTop: "20px" }}>
-      <Card
-        sx={{
-          minWidth: 275,
-          borderRadius: "10px",
-          backgroundColor: "#111e2d",
-          height: 70,
-          width: 770, 
-          margin: "0 auto",
-        }}
-        style={{maxWidth: "100%"}}
-      >
-        <CardContent sx={{ width: 770 }}>
-          <Grid
-            container
-            spacing={2}
-            sx={{ height: 70, width: 770, padding: "10px" }}
-          >
-            <Grid
-              item
-              xs={9}
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "left",
-              }}
-              style={{ padding: "0" }}
-            >
-              <Typography variant="h6" sx={{ color: "#ccc" }}>
-                First TODO
-              </Typography>
-            </Grid>
-
-            <Grid
-              xs={3}
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "right",
-                gap: 1,
-              }}
-            >
-              <IconButton aria-label="check" style={IconStyle}>
-                <CheckIcon />
-              </IconButton>
-
-              <IconButton aria-label="edit" style={IconStyle}>
-                <EditIcon />
-              </IconButton>
-
-              <IconButton aria-label="delete" style={IconStyle}>
-                <DeleteIcon />
-              </IconButton>
-            </Grid>
+    <Card
+      sx={{
+        mt: 3,
+        borderRadius: 2,
+        bgcolor: "#111e2d",
+        maxWidth: 770,
+        mx: "auto",
+        transition: ".3s",
+        "&:hover": {boxShadow: "0 0 5px #0b60c280"}
+      }}
+    >
+      <CardContent style={{padding: "10px"}}>
+        <Grid container alignItems="center" justifyContent="space-between">
+          <Grid item xs={9}>
+            
+            <Typography variant="h5" sx={{ color: "#ccc", textAlign: "left"}}>
+              First TODO
+            </Typography>
+            <Typography variant="h6" sx={{ color: "#999", textAlign: "left"}}>
+              Details 
+            </Typography>
           </Grid>
-        </CardContent>
-      </Card>
-    </div>
+          <Grid item xs={3} sx={{ textAlign: "right" }}>
+            <IconButton aria-label="check" sx={IconStyle}>
+              <Check />
+            </IconButton>
+            <IconButton aria-label="edit" sx={IconStyle}>
+              <Edit />
+            </IconButton>
+            <IconButton aria-label="delete" sx={IconStyle}>
+              <Delete />
+            </IconButton>
+          </Grid>
+        </Grid>
+      </CardContent>
+    </Card>
   );
 }
-
-const IconStyle = {
-  background: "#0e76ddff",
-  color: "white",
-  borderRadius: "50%",
-  width: "40px",
-  height: "40px",
-};
