@@ -22,7 +22,7 @@ export default function Content() {
   const [titleInput, setTitleInput] = useState("");
 
   const todosJsx = todos.map((todo) => {
-    return <Todo key={todo.id} title={todo.title} details={todo.details} />;
+    return <Todo key={todo.id} theTodo={todo} toCheckClick={handleCheckClick}/>;
   });
 
   function handleAddClick() {
@@ -39,6 +39,17 @@ export default function Content() {
 
   function handleInputChnage(e) {
     setTitleInput(e.target.value);
+  }
+
+  function handleCheckClick(todoId) {
+    const updatedTodos = todos.map((todo) => {
+      if (todo.id == todoId) {
+        todo.isComplited = !todo.isComplited;
+        
+      }
+      return todo;
+    })
+    setTodos(updatedTodos)
   }
 
   return (
