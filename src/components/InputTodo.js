@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
-export default function InputTodo() {
+export default function InputTodo({ onAddClick, inputValue, onInputChange }) {
   return (
     <Grid container sx={{ marginTop: 2 }}>
       <Grid item xs={9} style={{ width: "70%" }}>
@@ -17,6 +17,10 @@ export default function InputTodo() {
             fullWidth
             label="Todo Title"
             variant="outlined"
+            value={inputValue}
+            onChange={(e) => {
+              onInputChange(e);
+            }}
             style={{ width: "100%", color: "#ccc" }}
             sx={{
               "& .MuiInputLabel-root": {
@@ -64,6 +68,9 @@ export default function InputTodo() {
             borderColor: "#08315c",
             color: "#ccc",
             fontWeight: "600",
+          }}
+          onClick={() => {
+            onAddClick();
           }}
         >
           Addition

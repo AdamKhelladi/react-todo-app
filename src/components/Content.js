@@ -4,7 +4,7 @@ import ToggleButtons from "./ToggleButtons";
 import Todo from "./Todo";
 import InputTodo from "./InputTodo";
 
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 import { useState } from "react";
 
@@ -13,34 +13,33 @@ const initialTodos = [
     id: uuidv4(),
     title: "Reading Books",
     details: "The Book That Iam Reading Now Is Fosol Fi Osol Al Tafsir",
-    isComplited: false
+    isComplited: false,
   },
-  {
-    id: uuidv4(),
-    title: "Go To The Gym",
-    details: "Go To The Gym Go To The Gym Go To The Gym",
-    isComplited: false
-  },
-  {
-    id: uuidv4(),
-    title: "Learn Programming",
-    details: "Do Some Code, & Tech & business",
-    isComplited: false
-  },
-  {
-    id: uuidv4(),
-    title: "Visit Family",
-    details: "My GrandPa & GrandMa, And Some Friends",
-    isComplited: false
-  }
-]
+];
 
 export default function Content() {
   const [todos, setTodos] = useState(initialTodos);
+  const [titleInput, setTitleInput] = useState("");
 
   const todosJsx = todos.map((todo) => {
-    return <Todo key={todo.id} title={todo.title} details={todo.details}/>
+    return <Todo key={todo.id} title={todo.title} details={todo.details} />;
   });
+
+  function handleAddClick() {
+    const newTodo = {
+      id: uuidv4(),
+      title: titleInput,
+      details: "Anything Here..",
+      isComplited: false
+    }
+
+    setTodos([...todos, newTodo]);
+    setTitleInput("");
+  }
+
+  function handleInputChnage(e) {
+    setTitleInput(e.target.value);
+  }
 
   return (
     <Container>
@@ -49,7 +48,11 @@ export default function Content() {
 
         {todosJsx}
 
-        <InputTodo />
+        <InputTodo
+          onAddClick={handleAddClick}
+          inputValue={titleInput}
+          onInputChange={handleInputChnage}
+        />
       </div>
     </Container>
   );
