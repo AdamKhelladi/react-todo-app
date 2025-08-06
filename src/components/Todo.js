@@ -1,13 +1,13 @@
 import { Card, CardContent, Typography, Grid, IconButton } from "@mui/material";
 import { Check, Delete, Edit } from "@mui/icons-material";
 
-const IconStyle = {
-  color: "#ccc",
-  transition: ".3s",
-  "&:hover": { color: "#fff" },
-};
+import { useContext } from "react";
+import { TodosContext } from "../contexts/TodosContext";
 
-export default function Todo({ theTodo, toCheckClick }) {
+export default function Todo({ todo }) {
+  const { todos, setTodos } =
+    useContext(TodosContext);
+
   const baseIconStyle = {
     transition: ".3s",
     "&:hover": { color: "#fff" },
@@ -15,8 +15,8 @@ export default function Todo({ theTodo, toCheckClick }) {
 
   const checkStyle = {
     ...baseIconStyle,
-    color: theTodo.isComplited ? "#0e76ddff" : "#ccc",
-    "&:hover": { color: theTodo.isComplited ? "#0e76ddff" : "#fff" },
+    color: todo.isComplited ? "#0e76ddff" : "#ccc",
+    "&:hover": { color: todo.isComplited ? "#0e76ddff" : "#fff" },
   };
 
   const editStyle = {
@@ -30,7 +30,13 @@ export default function Todo({ theTodo, toCheckClick }) {
   };
 
   function handleCheckClick() {
-    toCheckClick(theTodo.id);
+    const updatedTodos = todos.map((t) => {
+      if (t.id == todo.id) {
+        t.isComplited = !t.isComplited;
+      }
+      return t;
+    });
+    setTodos(updatedTodos);
   }
 
   return (
@@ -57,13 +63,13 @@ export default function Todo({ theTodo, toCheckClick }) {
                 fontSize: "20px",
               }}
             >
-              {theTodo.title}
+              {todo.title}
             </Typography>
             <Typography
               variant="h6"
               sx={{ color: "#999", textAlign: "left", fontSize: "18px" }}
             >
-              {theTodo.details}
+              {todo.details}
             </Typography>
           </Grid>
           <Grid item xs={3} sx={{ textAlign: "right" }}>

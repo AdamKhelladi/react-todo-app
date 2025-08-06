@@ -3,7 +3,16 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
-export default function InputTodo({ onAddClick, inputValue, onInputChange }) {
+import { useContext } from "react";
+import { TodosContext } from "../contexts/TodosContext";
+
+export default function InputTodo({ onAddClick }) {
+  const { titleInput, setTitleInput} = useContext(TodosContext);
+
+  function handleInputChnage(e) {
+    setTitleInput(e.target.value);
+  }
+
   return (
     <Grid container sx={{ marginTop: 2 }}>
       <Grid item xs={9} style={{ width: "70%" }}>
@@ -17,9 +26,9 @@ export default function InputTodo({ onAddClick, inputValue, onInputChange }) {
             fullWidth
             label="Todo Title"
             variant="outlined"
-            value={inputValue}
+            value={titleInput}
             onChange={(e) => {
-              onInputChange(e);
+              handleInputChnage(e);
             }}
             style={{ width: "100%", color: "#ccc" }}
             sx={{
