@@ -10,6 +10,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import TextField from "@mui/material/TextField";
 
 export default function Todo({ todo }) {
   const { todos, setTodos } = useContext(TodosContext);
@@ -18,18 +19,15 @@ export default function Todo({ todo }) {
     transition: ".3s",
     "&:hover": { color: "#fff" },
   };
-
   const checkStyle = {
     ...baseIconStyle,
     color: todo.isComplited ? "#0e76ddff" : "#ccc",
     "&:hover": { color: todo.isComplited ? "#0e76ddff" : "#fff" },
   };
-
   const editStyle = {
     ...baseIconStyle,
     color: "#ccc",
   };
-
   const deleteStyle = {
     ...baseIconStyle,
     color: "#ccc",
@@ -46,13 +44,24 @@ export default function Todo({ todo }) {
   }
 
   const [open, setOpen] = useState(false);
+  const [update, setUpdate] = useState(false);
+
+  const [updatedTodo, setUpdatedTodo] = useState({title: todo.title, details: todo.details});
 
   const handleClickOpen = () => {
     setOpen(true);
   };
 
-  const handleClose = () => {
+  const handleDeletDialogClose = () => {
     setOpen(false);
+  };
+
+  const handleClickUpdate = () => {
+    setUpdate(true);
+  };
+
+  const handleUpdateDialogClose = () => {
+    setUpdate(false);
   };
 
   const handleConfirmDelete = () => {
@@ -63,11 +72,23 @@ export default function Todo({ todo }) {
     setOpen(false);
   };
 
+  const handleConfirmUpdate = () => {
+    const updatedTodos = todos.map((t) => {
+      if (t.id == todo.id) {
+        return {...t, title: updatedTodo.title, details: updatedTodo.details}
+      } else {
+        return t;
+      }
+    });
+    setTodos(updatedTodos);
+    setUpdate(false);
+  };
+
   return (
     <>
       <Dialog
         open={open}
-        onClose={handleClose}
+        onClose={handleDeletDialogClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
         PaperProps={{
@@ -83,7 +104,7 @@ export default function Todo({ todo }) {
           id="alert-dialog-title"
           style={{ fontWeight: "600", letterSpacing: "-0.5px" }}
         >
-          {"Delete this todo?"}
+          {"Delete this TODO?"}
         </DialogTitle>
         <DialogContent>
           <DialogContentText
@@ -95,9 +116,87 @@ export default function Todo({ todo }) {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Disagree</Button>
+          <Button onClick={handleDeletDialogClose}>Disagree</Button>
           <Button onClick={handleConfirmDelete} autoFocus>
             Agree
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      <Dialog
+        open={update}
+        onClose={handleUpdateDialogClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+        PaperProps={{
+          sx: {
+            backgroundColor: "#101720",
+            color: "white",
+            boxShadow: "0 0 7px #666",
+            borderRadius: "10px",
+          },
+        }}
+      >
+        <DialogTitle
+          id="alert-dialog-title"
+          style={{ fontWeight: "600", letterSpacing: "-0.5px" }}
+        >
+          {"Update This TODO"}
+        </DialogTitle>
+        <DialogContent>
+          <TextField
+            autoFocus
+            required
+            margin="dense"
+            id="title"
+            name="title"
+            label="Todo Title"
+            type="text"
+            fullWidth
+            variant="standard"
+            value={updatedTodo.title}
+            onChange={(e) => {
+              setUpdatedTodo({...updatedTodo, title: e.target.value});
+            }}
+            sx={{
+              "& .MuiInputLabel-root": { color: "#ccc" }, 
+              "& .MuiInputBase-input": { color: "#ccc" }, 
+              "& .MuiInput-underline:before": { borderBottomColor: "#555" }, 
+              "& .MuiInput-underline:hover:before": {
+                borderBottomColor: "#08315c",
+              },
+              "& .MuiInput-underline:after": { borderBottomColor: "#ccc" },
+            }}
+          />
+          <TextField
+            autoFocus
+            required
+            margin="dense"
+            id="details"
+            name="details"
+            label="Todo Details"
+            type="text"
+            fullWidth
+            variant="standard"
+            value={updatedTodo.details}
+            onChange={(e) => {
+              setUpdatedTodo({...updatedTodo, details: e.target.value});
+            }}
+            sx={{
+              "& .MuiInputLabel-root": { color: "#ccc" }, 
+              "& .MuiInputBase-input": { color: "#ccc" }, 
+              "& .MuiInput-underline:before": { borderBottomColor: "#555" },
+              "& .MuiInput-underline:hover:before": {
+                borderBottomColor: "#08315c",
+              },
+              "& .MuiInput-underline:after": { borderBottomColor: "#ccc" },
+            }}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleUpdateDialogClose}>Disagree</Button>
+          <Button onClick={handleConfirmUpdate} autoFocus>
+            Update
           </Button>
         </DialogActions>
       </Dialog>
@@ -144,7 +243,13 @@ export default function Todo({ todo }) {
               >
                 <Check />
               </IconButton>
-              <IconButton aria-label="edit" sx={editStyle}>
+              <IconButton
+                aria-label="edit"
+                sx={editStyle}
+                onClick={() => {
+                  handleClickUpdate();
+                }}
+              >
                 <Edit />
               </IconButton>
               <IconButton
