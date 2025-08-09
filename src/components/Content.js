@@ -10,22 +10,25 @@ import { TodosContext } from "../contexts/TodosContext";
 import { v4 as uuidv4 } from "uuid";
 
 export default function Content() {
-  const {todos, setTodos, titleInput, setTitleInput} = useContext(TodosContext);
+  const { todos, setTodos, titleInput, setTitleInput } =
+    useContext(TodosContext);
 
   const todosJsx = todos.map((todo) => {
-    return <Todo key={todo.id} todo={todo}/>;
+    return <Todo key={todo.id} todo={todo} />;
   });
 
   function handleAddClick() {
-    const newTodo = {
-      id: uuidv4(),
-      title: titleInput,
-      details: "Anything Here..",
-      isComplited: false
-    }
+    if (titleInput != "") {
+      const newTodo = {
+        id: uuidv4(),
+        title: titleInput,
+        details: "Anything Here..",
+        isComplited: false,
+      };
 
-    setTodos([...todos, newTodo]);
-    setTitleInput("");
+      setTodos([...todos, newTodo]);
+      setTitleInput("");
+    }
   }
 
   return (
@@ -35,9 +38,7 @@ export default function Content() {
 
         {todosJsx}
 
-        <InputTodo
-          onAddClick={handleAddClick}
-        />
+        <InputTodo onAddClick={handleAddClick} />
       </div>
     </Container>
   );
