@@ -19,15 +19,18 @@ export default function Todo({ todo }) {
     transition: ".3s",
     "&:hover": { color: "#fff" },
   };
+
   const checkStyle = {
     ...baseIconStyle,
     color: todo.isComplited ? "#0e76ddff" : "#ccc",
     "&:hover": { color: todo.isComplited ? "#0e76ddff" : "#fff" },
   };
+
   const editStyle = {
     ...baseIconStyle,
     color: "#ccc",
   };
+  
   const deleteStyle = {
     ...baseIconStyle,
     color: "#ccc",
