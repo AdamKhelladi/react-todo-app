@@ -44,6 +44,7 @@ export default function Todo({ todo }) {
       return t;
     });
     setTodos(updatedTodos);
+    localStorage.setItem("todos", JSON.stringify(updatedTodos));
   }
 
   const [open, setOpen] = useState(false);
@@ -72,6 +73,7 @@ export default function Todo({ todo }) {
       return t.id != todo.id;
     });
     setTodos(newTodos);
+    localStorage.setItem("todos", JSON.stringify(newTodos));
     setOpen(false);
   };
 
@@ -84,6 +86,7 @@ export default function Todo({ todo }) {
       }
     });
     setTodos(updatedTodos);
+    localStorage.setItem("todos", JSON.stringify(updatedTodos));
     setUpdate(false);
   };
 
@@ -271,3 +274,4 @@ export default function Todo({ todo }) {
     </>
   );
 }
+

@@ -18,8 +18,9 @@ export default function Content() {
   });
 
   useEffect(() => {
-    console.log("Calling useEffect");
-  }, [])
+    const storageTodos = JSON.parse(localStorage.getItem("todos"));
+    setTodos(storageTodos);
+  }, []);
 
   function handleAddClick() {
     if (titleInput != "") {
@@ -37,9 +38,6 @@ export default function Content() {
       setTitleInput("");
     }
   }
-
-  const storageTodos = JSON.parse(localStorage.getItem("todos"));
-  // setTodos(storageTodos);
 
   return (
     <Container>
