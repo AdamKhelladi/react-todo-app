@@ -4,7 +4,7 @@ import ToggleButtons from "./ToggleButtons";
 import Todo from "./Todo";
 import InputTodo from "./InputTodo";
 
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { TodosContext } from "../contexts/TodosContext";
 
 import { v4 as uuidv4 } from "uuid";
@@ -17,6 +17,10 @@ export default function Content() {
     return <Todo key={todo.id} todo={todo} />;
   });
 
+  useEffect(() => {
+    console.log("Calling useEffect");
+  }, [])
+
   function handleAddClick() {
     if (titleInput != "") {
       const newTodo = {
@@ -26,10 +30,16 @@ export default function Content() {
         isComplited: false,
       };
 
-      setTodos([...todos, newTodo]);
+      let updatedTodos = [...todos, newTodo];
+
+      setTodos(updatedTodos);
+      localStorage.setItem("todos", JSON.stringify(updatedTodos));
       setTitleInput("");
     }
   }
+
+  const storageTodos = JSON.parse(localStorage.getItem("todos"));
+  // setTodos(storageTodos);
 
   return (
     <Container>
