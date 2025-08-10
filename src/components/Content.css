@@ -1,4 +1,32 @@
 .content {
   padding: 10px 20px;
   text-align: center;
+  max-height: 80vh;
+  overflow-y: auto;
+  border-radius: 12px;
+  color: #ccc;
+}
+
+.content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.content::-webkit-scrollbar-track {
+  background: #1a2435;
+  border-radius: 10px;
+}
+
+.content::-webkit-scrollbar-thumb {
+  background-color: #3a4b63;
+  border-radius: 10px;
+}
+
+.content::-webkit-scrollbar-thumb:hover {
+  background-color: #5a6d89;
+}
+
+@media (max-width: 768px) {
+  .content {
+    padding: 0;
+  }
 }

@@ -15,27 +15,6 @@ import TextField from "@mui/material/TextField";
 export default function Todo({ todo }) {
   const { todos, setTodos } = useContext(TodosContext);
 
-  const baseIconStyle = {
-    transition: ".3s",
-    "&:hover": { color: "#fff" },
-  };
-
-  const checkStyle = {
-    ...baseIconStyle,
-    color: todo.isComplited ? "#0e76ddff" : "#ccc",
-    "&:hover": { color: todo.isComplited ? "#0e76ddff" : "#fff" },
-  };
-
-  const editStyle = {
-    ...baseIconStyle,
-    color: "#ccc",
-  };
-  
-  const deleteStyle = {
-    ...baseIconStyle,
-    color: "#ccc",
-  };
-
   function handleCheckClick() {
     const updatedTodos = todos.map((t) => {
       if (t.id == todo.id) {
@@ -50,7 +29,10 @@ export default function Todo({ todo }) {
   const [open, setOpen] = useState(false);
   const [update, setUpdate] = useState(false);
 
-  const [updatedTodo, setUpdatedTodo] = useState({title: todo.title, details: todo.details});
+  const [updatedTodo, setUpdatedTodo] = useState({
+    title: todo.title,
+    details: todo.details,
+  });
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -80,7 +62,7 @@ export default function Todo({ todo }) {
   const handleConfirmUpdate = () => {
     const updatedTodos = todos.map((t) => {
       if (t.id == todo.id) {
-        return {...t, title: updatedTodo.title, details: updatedTodo.details}
+        return { ...t, title: updatedTodo.title, details: updatedTodo.details };
       } else {
         return t;
       }
@@ -88,6 +70,27 @@ export default function Todo({ todo }) {
     setTodos(updatedTodos);
     localStorage.setItem("todos", JSON.stringify(updatedTodos));
     setUpdate(false);
+  };
+
+  const baseIconStyle = {
+    transition: ".3s",
+    "&:hover": { color: "#fff" },
+  };
+
+  const checkStyle = {
+    ...baseIconStyle,
+    color: todo.isComplited ? "#0e76ddff" : "#ccc",
+    "&:hover": { color: todo.isComplited ? "#0e76ddff" : "#fff" },
+  };
+
+  const editStyle = {
+    ...baseIconStyle,
+    color: "#ccc",
+  };
+
+  const deleteStyle = {
+    ...baseIconStyle,
+    color: "#ccc",
   };
 
   return (
@@ -162,12 +165,12 @@ export default function Todo({ todo }) {
             variant="standard"
             value={updatedTodo.title}
             onChange={(e) => {
-              setUpdatedTodo({...updatedTodo, title: e.target.value});
+              setUpdatedTodo({ ...updatedTodo, title: e.target.value });
             }}
             sx={{
-              "& .MuiInputLabel-root": { color: "#ccc" }, 
-              "& .MuiInputBase-input": { color: "#ccc" }, 
-              "& .MuiInput-underline:before": { borderBottomColor: "#555" }, 
+              "& .MuiInputLabel-root": { color: "#ccc" },
+              "& .MuiInputBase-input": { color: "#ccc" },
+              "& .MuiInput-underline:before": { borderBottomColor: "#555" },
               "& .MuiInput-underline:hover:before": {
                 borderBottomColor: "#08315c",
               },
@@ -186,11 +189,11 @@ export default function Todo({ todo }) {
             variant="standard"
             value={updatedTodo.details}
             onChange={(e) => {
-              setUpdatedTodo({...updatedTodo, details: e.target.value});
+              setUpdatedTodo({ ...updatedTodo, details: e.target.value });
             }}
             sx={{
-              "& .MuiInputLabel-root": { color: "#ccc" }, 
-              "& .MuiInputBase-input": { color: "#ccc" }, 
+              "& .MuiInputLabel-root": { color: "#ccc" },
+              "& .MuiInputBase-input": { color: "#ccc" },
               "& .MuiInput-underline:before": { borderBottomColor: "#555" },
               "& .MuiInput-underline:hover:before": {
                 borderBottomColor: "#08315c",
@@ -228,13 +231,24 @@ export default function Todo({ todo }) {
                   textAlign: "left",
                   fontWeight: "600",
                   fontSize: "20px",
+                  textDecoration: todo.isComplited ? "line-through" : "",
+                  "@media (max-width: 768px)": {
+                    fontSize: "18px",
+                  },
                 }}
               >
                 {todo.title}
               </Typography>
               <Typography
                 variant="h6"
-                sx={{ color: "#999", textAlign: "left", fontSize: "18px" }}
+                sx={{
+                  color: "#999",
+                  textAlign: "left",
+                  fontSize: "18px",
+                  "@media (max-width: 768px)": {
+                    fontSize: "15px",
+                  },
+                }}
               >
                 {todo.details}
               </Typography>
@@ -274,4 +288,3 @@ export default function Todo({ todo }) {
     </>
   );
 }
-

@@ -13,38 +13,30 @@ export default function Content() {
   const { todos, setTodos, titleInput, setTitleInput } =
     useContext(TodosContext);
 
-  const todosJsx = todos.map((todo) => {
-    return <Todo key={todo.id} todo={todo} />;
-  });
-
   useEffect(() => {
     const storageTodos = JSON.parse(localStorage.getItem("todos"));
     setTodos(storageTodos);
   }, []);
 
   function handleAddClick() {
-    if (titleInput != "") {
-      const newTodo = {
-        id: uuidv4(),
-        title: titleInput,
-        details: "Anything Here..",
-        isComplited: false,
-      };
+    const newTodo = {
+      id: uuidv4(),
+      title: titleInput,
+      details: "Anything Here..",
+      isComplited: false,
+    };
 
-      let updatedTodos = [...todos, newTodo];
+    let updatedTodos = [...todos, newTodo];
 
-      setTodos(updatedTodos);
-      localStorage.setItem("todos", JSON.stringify(updatedTodos));
-      setTitleInput("");
-    }
+    setTodos(updatedTodos);
+    localStorage.setItem("todos", JSON.stringify(updatedTodos));
+    setTitleInput("");
   }
 
   return (
     <Container>
       <div className="content">
         <ToggleButtons />
-
-        {todosJsx}
 
         <InputTodo onAddClick={handleAddClick} />
       </div>

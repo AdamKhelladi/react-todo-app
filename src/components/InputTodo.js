@@ -7,7 +7,7 @@ import { useContext } from "react";
 import { TodosContext } from "../contexts/TodosContext";
 
 export default function InputTodo({ onAddClick }) {
-  const { titleInput, setTitleInput} = useContext(TodosContext);
+  const { titleInput, setTitleInput } = useContext(TodosContext);
 
   function handleInputChnage(e) {
     setTitleInput(e.target.value);
@@ -33,23 +33,23 @@ export default function InputTodo({ onAddClick }) {
             style={{ width: "100%", color: "#ccc" }}
             sx={{
               "& .MuiInputLabel-root": {
-                color: "#ccc", 
+                color: "#ccc",
               },
               "& .MuiOutlinedInput-root": {
                 "& input": {
-                  color: "#ccc", 
+                  color: "#ccc",
                 },
                 "&.Mui-focused": {
                   color: "#ccc",
                 },
                 "& fieldset": {
-                  borderColor: "#08315c", 
+                  borderColor: "#08315c",
                 },
                 "&:hover fieldset": {
-                  borderColor: "#08315c", 
+                  borderColor: "#08315c",
                 },
                 "&.Mui-focused fieldset": {
-                  borderColor: "#ccc", 
+                  borderColor: "#ccc",
                 },
               },
             }}
@@ -81,6 +81,7 @@ export default function InputTodo({ onAddClick }) {
           onClick={() => {
             onAddClick();
           }}
+          disabled={titleInput.length == 0}
         >
           Addition
         </Button>
