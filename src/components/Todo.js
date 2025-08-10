@@ -17,7 +17,7 @@ export default function Todo({ todo }) {
 
   function handleCheckClick() {
     const updatedTodos = todos.map((t) => {
-      if (t.id == todo.id) {
+      if (t.id === todo.id) {
         t.isComplited = !t.isComplited;
       }
       return t;
@@ -52,7 +52,7 @@ export default function Todo({ todo }) {
 
   const handleConfirmDelete = () => {
     const newTodos = todos.filter((t) => {
-      return t.id != todo.id;
+      return t.id !== todo.id;
     });
     setTodos(newTodos);
     localStorage.setItem("todos", JSON.stringify(newTodos));
@@ -61,7 +61,7 @@ export default function Todo({ todo }) {
 
   const handleConfirmUpdate = () => {
     const updatedTodos = todos.map((t) => {
-      if (t.id == todo.id) {
+      if (t.id === todo.id) {
         return { ...t, title: updatedTodo.title, details: updatedTodo.details };
       } else {
         return t;

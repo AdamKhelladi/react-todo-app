@@ -1,10 +1,9 @@
 import "./Content.css";
 import Container from "@mui/material/Container";
 import ToggleButtons from "./ToggleButtons";
-import Todo from "./Todo";
 import InputTodo from "./InputTodo";
 
-import { useContext, useState, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { TodosContext } from "../contexts/TodosContext";
 
 import { v4 as uuidv4 } from "uuid";
@@ -14,7 +13,7 @@ export default function Content() {
     useContext(TodosContext);
 
   useEffect(() => {
-    const storageTodos = JSON.parse(localStorage.getItem("todos"));
+    const storageTodos = JSON.parse(localStorage.getItem("todos")) ?? [];
     setTodos(storageTodos);
   }, []);
 

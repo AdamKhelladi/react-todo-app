@@ -81,7 +81,7 @@ export default function InputTodo({ onAddClick }) {
           onClick={() => {
             onAddClick();
           }}
-          disabled={titleInput.length == 0}
+          disabled={titleInput.length === 0}
         >
           Addition
         </Button>
