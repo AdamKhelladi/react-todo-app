@@ -1,6 +1,6 @@
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-import { useState, useContext } from "react";
+import { useState, useContext, useMemo } from "react";
 import { TodosContext } from "../contexts/TodosContext";
 import "./ToggleButtons.css";
 
@@ -10,8 +10,17 @@ export default function ToggleButtons() {
   const { todos } = useContext(TodosContext);
   const [displayTodosType, setDisplayTodosType] = useState("all");
 
-  const completedTodos = todos.filter((t) => t.isComplited);
-  const inCompletedTodos = todos.filter((t) => !t.isComplited);
+  const completedTodos = useMemo(() => {
+    return todos.filter((t) => {
+      return t.isComplited;
+    });
+  }, [todos]);
+
+  const inCompletedTodos = useMemo(() => {
+    return todos.filter((t) => {
+      return !t.isComplited;
+    });
+  }, [todos]);
 
   let todosToBeRendered = todos;
 
