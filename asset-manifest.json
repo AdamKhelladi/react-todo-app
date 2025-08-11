@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/react-todo-app/static/css/main.f6adca1d.css",
+    "main.js": "/react-todo-app/static/js/main.1211af34.js",
+    "static/js/453.7c2f868a.chunk.js": "/react-todo-app/static/js/453.7c2f868a.chunk.js",
+    "static/media/Roboto-Bold.ttf": "/react-todo-app/static/media/Roboto-Bold.cb02a42f24299e95adb5.ttf",
+    "static/media/Roboto-Medium.ttf": "/react-todo-app/static/media/Roboto-Medium.116fcd4fd987818c5d98.ttf",
+    "static/media/Roboto-Light.ttf": "/react-todo-app/static/media/Roboto-Light.8f977c8591803dd0978f.ttf",
+    "static/media/Roboto-Thin.ttf": "/react-todo-app/static/media/Roboto-Thin.b09e218bb83bb7003cc2.ttf",
+    "index.html": "/react-todo-app/index.html",
+    "main.f6adca1d.css.map": "/react-todo-app/static/css/main.f6adca1d.css.map",
+    "main.1211af34.js.map": "/react-todo-app/static/js/main.1211af34.js.map",
+    "453.7c2f868a.chunk.js.map": "/react-todo-app/static/js/453.7c2f868a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f6adca1d.css",
+    "static/js/main.1211af34.js"
+  ]
+}
