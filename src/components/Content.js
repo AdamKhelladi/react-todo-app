@@ -5,7 +5,6 @@ import InputTodo from "./InputTodo";
 
 import { useContext, useEffect } from "react";
 import { TodosContext } from "../contexts/TodosContext";
-
 import { v4 as uuidv4 } from "uuid";
 
 export default function Content() {
@@ -42,4 +41,5 @@ export default function Content() {
     </Container>
   );
 }
+
 
